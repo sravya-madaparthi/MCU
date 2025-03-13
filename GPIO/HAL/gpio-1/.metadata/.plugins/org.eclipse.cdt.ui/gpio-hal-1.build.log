@@ -1,0 +1,20 @@
+15:23:45 **** Incremental Build of configuration Debug for project gpio-hal-1 ****
+make -j4 all 
+arm-none-eabi-gcc -o "gpio-hal-1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\91830\STM32CubeIDE\HAL\gpio-hal-1\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gpio-hal-1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o: in function `main':
+C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c:7: multiple definition of `main'; ./Core/Src/main.o:C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:7: first defined here
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o: in function `SystemClock_Config':
+C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c:27: multiple definition of `SystemClock_Config'; ./Core/Src/main.o:C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:27: first defined here
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:19:(.text.main+0x16): undefined reference to `HAL_GPIO_ReadPin'
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:20:(.text.main+0x28): undefined reference to `HAL_GPIO_WritePin'
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:22:(.text.main+0x36): undefined reference to `HAL_GPIO_WritePin'
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `MX_GPIO_Init':
+C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:46:(.text.MX_GPIO_Init+0x68): undefined reference to `HAL_GPIO_Init'
+C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/91830/STM32CubeIDE/HAL/gpio-hal-1/Debug/../Core/Src/main.c:52:(.text.MX_GPIO_Init+0x82): undefined reference to `HAL_GPIO_Init'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: gpio-hal-1.elf] Error 1
+"make -j4 all" terminated with exit code 2. Build might be incomplete.
+
+15:23:46 Build Failed. 8 errors, 0 warnings. (took 516ms)
+

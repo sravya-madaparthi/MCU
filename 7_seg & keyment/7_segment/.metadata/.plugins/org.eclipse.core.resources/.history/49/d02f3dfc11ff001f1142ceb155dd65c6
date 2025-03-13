@@ -1,0 +1,63 @@
+#include "main.h"
+
+// Define GPIO Pins for 7-Segment Display (PA0 to PA6)
+#define SEG_A GPIO_PIN_0
+#define SEG_B GPIO_PIN_1
+#define SEG_C GPIO_PIN_2
+#define SEG_D GPIO_PIN_3
+#define SEG_E GPIO_PIN_4
+#define SEG_F GPIO_PIN_5
+#define SEG_G GPIO_PIN_6
+
+#define SEG_PORT GPIOA  // All segments connected to GPIOA
+
+// Function Prototypes
+void delay_ms(uint32_t ms);
+void displayOne(void);
+
+int main(void) {
+    HAL_Init();
+
+    MX_GPIO_Init();
+
+    while (1) {
+        // Display '1' on the 7-segment display
+        displayOne();
+        delay_ms(1000);  // Delay 1 second
+    }
+}
+
+// Function to display '1' on 7-segment (Common Cathode)
+void displayOne(void) {
+    HAL_GPIO_WritePin(SEG_PORT, SEG_A, GPIO_PIN_RESET);  // a = OFF
+    HAL_GPIO_WritePin(SEG_PORT, SEG_B, GPIO_PIN_SET);    // b = ON
+    HAL_GPIO_WritePin(SEG_PORT, SEG_C, GPIO_PIN_SET);    // c = ON
+    HAL_GPIO_WritePin(SEG_PORT, SEG_D, GPIO_PIN_RESET);  // d = OFF
+    HAL_GPIO_WritePin(SEG_PORT, SEG_E, GPIO_PIN_RESET);  // e = OFF
+    HAL_GPIO_WritePin(SEG_PORT, SEG_F, GPIO_PIN_RESET);  // f = OFF
+    HAL_GPIO_WritePin(SEG_PORT, SEG_G, GPIO_PIN_RESET);  // g = OFF
+}
+
+// Simple delay function (in milliseconds)
+void delay_ms(uint32_t ms) {
+    volatile uint32_t count;
+    while (ms--) {
+        for (count = 0; count < 4000; count++) {
+            // Loop for roughly 1ms delay
+        }
+    }
+}
+
+// GPIO Initialization (7-Segment display on PA0 to PA6)
+void MX_GPIO_Init(void) {
+    __HAL_RCC_GPIOA_CLK_ENABLE();  // Enable GPIOA Clock
+
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    // Configure PA0 to PA6 as output
+    GPIO_InitStruct.Pin = SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+}

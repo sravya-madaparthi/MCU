@@ -1,0 +1,10 @@
+16:19:03 **** Incremental Build of configuration Debug for project keypad interfacing ****
+make -j4 all 
+arm-none-eabi-size  keypad\ interfacing.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7268	    104	   1904	   9276	   243c	keypad interfacing.elf
+Finished building: default.size.stdout
+ 
+
+16:19:03 Build Finished. 0 errors, 0 warnings. (took 307ms)
+

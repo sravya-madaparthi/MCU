@@ -1,0 +1,5 @@
+../Core/Src/main.c:26:17:main	16	static
+../Core/Src/main.c:40:18:USART2_init	4	static
+../Core/Src/main.c:54:6:USART2_read	4	static
+../Core/Src/main.c:59:6:LED_blink	16	static
+../Core/Src/main.c:67:6:delayMs	24	static

@@ -1,0 +1,10 @@
+15:30:16 **** Incremental Build of configuration Debug for project hal-gpio-1 ****
+make -j4 all 
+arm-none-eabi-size  hal-gpio-1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2728	     12	   1572	   4312	   10d8	hal-gpio-1.elf
+Finished building: default.size.stdout
+ 
+
+15:30:17 Build Finished. 0 errors, 0 warnings. (took 281ms)
+

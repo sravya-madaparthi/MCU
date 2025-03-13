@@ -1,0 +1,6 @@
+../Core/Src/main.c:29:6:USART1_Init	16	static
+../Core/Src/main.c:43:6:USART1_Send	16	static
+../Core/Src/main.c:48:6:GPIO_Init	40	static
+../Core/Src/main.c:75:6:Read_Keypad	16	static
+../Core/Src/main.c:92:6:Display_7Segment	24	static
+../Core/Src/main.c:102:5:main	40	static

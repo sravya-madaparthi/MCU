@@ -1,0 +1,10 @@
+16:46:06 **** Incremental Build of configuration Debug for project keypad matrix ****
+make -j4 all 
+arm-none-eabi-size  keypad\ matrix.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7260	    116	   1908	   9284	   2444	keypad matrix.elf
+Finished building: default.size.stdout
+ 
+
+16:46:07 Build Finished. 0 errors, 0 warnings. (took 263ms)
+

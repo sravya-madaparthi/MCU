@@ -1,0 +1,10 @@
+17:35:43 **** Incremental Build of configuration Debug for project keypad with 7-segment and led ****
+make -j4 all 
+arm-none-eabi-size  keypad\ with\ 7-segment\ and\ led.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3464	     36	   1572	   5072	   13d0	keypad with 7-segment and led.elf
+Finished building: default.size.stdout
+ 
+
+17:35:44 Build Finished. 0 errors, 0 warnings. (took 566ms)
+

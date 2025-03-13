@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;gpio-hal-1&apos;" deleteContents="false" description="Delete resource &apos;gpio-hal-1&apos;" element1="/gpio-hal-1" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1741168478797"/>&#x0A;<refactoring comment="Delete resource &apos;hal-gpio-7&apos;" deleteContents="false" description="Delete resource &apos;hal-gpio-7&apos;" element1="/hal-gpio-7" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1741172199746"/>
+</session>

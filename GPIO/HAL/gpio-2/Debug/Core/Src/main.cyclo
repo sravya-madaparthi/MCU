@@ -1,0 +1,4 @@
+../Core/Src/main.c:8:5:main	4
+../Core/Src/main.c:37:6:SystemClock_Config	1
+../Core/Src/main.c:43:13:MX_GPIO_Init	1
+../Core/Src/main.c:65:6:delay_ms	1

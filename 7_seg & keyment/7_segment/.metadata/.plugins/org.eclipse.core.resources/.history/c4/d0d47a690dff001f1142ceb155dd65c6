@@ -1,0 +1,90 @@
+#include "main.h"
+
+#include "stm32f4xx_hal.h"       // Main HAL library
+   // TIM HAL functions (for STM32F4)
+
+
+TIM_HandleTypeDef htim2;
+
+// Define GPIO Pins for 7-Segment Display (PA0 to PA6)
+#define SEG_A GPIO_PIN_0
+#define SEG_B GPIO_PIN_1
+#define SEG_C GPIO_PIN_2
+#define SEG_D GPIO_PIN_3
+#define SEG_E GPIO_PIN_4
+#define SEG_F GPIO_PIN_5
+#define SEG_G GPIO_PIN_6
+
+#define SEG_PORT GPIOA  // All segments connected to GPIOA
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_TIM2_Init(void);
+void displayOne(void);
+
+int main(void) {
+    HAL_Init();
+    SystemClock_Config();
+    MX_GPIO_Init();
+    MX_TIM2_Init();
+
+    // Start Timer Interrupt
+    HAL_TIM_Base_Start_IT(&htim2);
+
+    while (1) {
+        // Everything is handled in the Timer ISR
+    }
+}
+
+// Timer2 Initialization for 1s Interrupt
+void MX_TIM2_Init(void) {
+    __HAL_RCC_TIM2_CLK_ENABLE();
+    htim2.Instance = TIM2;
+    htim2.Init.Prescaler = 7999;  // 8MHz / 8000 = 1kHz
+    htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim2.Init.Period = 999;  // 1000ms (1s)
+    htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+    HAL_TIM_Base_Init(&htim2);
+    HAL_TIM_Base_Start_IT(&htim2);
+
+    // Enable NVIC for TIM2 interrupt
+    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(TIM2_IRQn);
+}
+
+// TIM2 Interrupt Handler
+void TIM2_IRQHandler(void) {
+    HAL_TIM_IRQHandler(&htim2);
+}
+
+// Timer Callback Function (Executes every 1 second)
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+    if (htim->Instance == TIM2) {
+        displayOne(); // Call function to display '1'
+    }
+}
+
+// Function to display '1' on 7-segment (Common Cathode)
+void displayOne(void) {
+    HAL_GPIO_WritePin(SEG_PORT, SEG_A, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(SEG_PORT, SEG_B, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(SEG_PORT, SEG_C, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(SEG_PORT, SEG_D, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(SEG_PORT, SEG_E, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(SEG_PORT, SEG_F, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(SEG_PORT, SEG_G, GPIO_PIN_RESET);
+}
+
+// GPIO Initialization (7-Segment display on PA0 to PA6)
+void MX_GPIO_Init(void) {
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    // Configure PA0 to PA6 as output
+    GPIO_InitStruct.Pin = SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+}
